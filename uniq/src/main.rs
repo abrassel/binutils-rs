@@ -1,3 +1,5 @@
+use std::path::PathBuf;
+
 use structopt::StructOpt;
 
 #[allow(unused)]
@@ -23,6 +25,10 @@ struct Opt {
     unique: bool,
     #[structopt(long, help = "Consider non-adjacent lines for uniqueness")]
     non_adjacent: bool,
+    #[structopt(help = "Input file - defaults to `stdin` if not provided, or if filename is \"-\"")]
+    input: Option<PathBuf>,
+    #[structopt(help = "Output file - defaults to `stdout` if not provided")]
+    output: Option<PathBuf>,
 }
 
 fn main() {
