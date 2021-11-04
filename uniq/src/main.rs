@@ -1,3 +1,11 @@
+//! This crate is a port of `binutil`'s [`uniq`](https://man7.org/linux/man-pages/man1/uniq.1.html) tool.
+//! It is similar, but not quite identical in functionality.
+//!
+//! In particular, where the old `uniq` only compares adjacent lines, `uniq-rs`
+//! offers non-adjacent comparisons. `uniq-rs` reads from `STDIN` and outputs to
+//! `STDOUT` by default, although input and output files may be specified.
+//! See the command line documentation for more details.
+
 use std::path::PathBuf;
 
 use structopt::StructOpt;
