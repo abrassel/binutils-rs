@@ -1,0 +1,3 @@
+[toolchain]
+# configure project to use nightly rust
+channel = "nightly"
