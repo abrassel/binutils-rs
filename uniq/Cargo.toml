@@ -1,9 +1,0 @@
-[package]
-name = "uniq"
-version = "0.1.0"
-edition = "2021"
-description = "Report or filter out repeated lines in a file"
-
-[dependencies]
-anyhow = "1.0"
-structopt = "0.3"

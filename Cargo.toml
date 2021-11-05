@@ -1,5 +1,14 @@
-[workspace]
+[package]
+name = "binutils"
+version = "0.1.0"
+edition = "2021"
 
-members = [
-    "uniq"
-]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "uniq"
+path = "src/bin/uniq.rs"
+
+[dependencies]
+anyhow = "1.0"
+structopt = "0.3"
