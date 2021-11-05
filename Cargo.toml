@@ -1,5 +1,7 @@
-[workspace]
+[package]
+name = "binutils"
+version = "0.1.0"
+edition = "2021"
 
-members = [
-    "tail"
-]
+[dependencies]
+anyhow = "1.0"
