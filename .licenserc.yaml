@@ -15,5 +15,7 @@ header:
     - 'LICENSE'
     - 'rust-toolchain'
     - 'NOTICE'
+    - '.*'
+    - '.**'
 
   comment: on-failure
