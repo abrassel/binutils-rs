@@ -76,14 +76,6 @@ fn exec<R: Read, W: Write>(read: &mut R, write: &mut W, core_opt: CoreOpt) -> an
 
 fn main() -> anyhow::Result<()> {
     let Opt {input, output, core_opt} = Opt::from_args();
-    let mut input = match input {
-        Some(input) if input != Path::new("-") => box File::open(input)? as Box<dyn Read>,
-        _ => box io::stdin() as Box<dyn Read>,
-    };
-    let mut output = match output {
-        None => box io::stdout() as Box<dyn Write>,
-        // important not to truncate what is already in the file.   
-        Some(output) => box OpenOptions::new().write(true).open(output)? as Box<dyn Write>,
-    };
+    let (mut input, mut output) = binutils::convert_streams(input, output)?;
     exec(&mut input, &mut output, core_opt)
 }
