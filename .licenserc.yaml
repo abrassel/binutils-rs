@@ -1,0 +1,15 @@
+header:
+  license:
+    spdx-id: MIT
+    copyright-owner: Facebook
+
+  paths-ignore:
+    - 'licenses'
+    - '**/*.md'
+    - 'LICENSE'
+    - 'NOTICE'
+    - '**/*.toml'
+    - '*.toml'
+    - '*.md'
+
+  comment: on-failure
