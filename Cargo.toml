@@ -3,5 +3,9 @@ name = "binutils"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "tail"
+path = "src/bin/tail.rs"
+
 [dependencies]
 anyhow = "1.0"
