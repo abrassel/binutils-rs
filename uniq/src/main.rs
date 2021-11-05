@@ -6,14 +6,27 @@
 //! `STDOUT` by default, although input and output files may be specified.
 //! See the command line documentation for more details.
 
-use std::path::PathBuf;
+#![feature(box_syntax)]
+
+use std::{fs::{File, OpenOptions}, io::{self, BufReader, LineWriter, Read, Write}, path::PathBuf};
 
 use structopt::StructOpt;
 
-#[allow(unused)]
 #[derive(StructOpt)]
 /// The `uniq` utility provides facilities for evaluating uniqueness of lines.
 struct Opt {
+    #[structopt(flatten)]
+    core_opt: CoreOpt,
+    #[structopt(
+        help = "Input file - defaults to `stdin` if not provided, or if filename is \"-\""
+    )]
+    input: Option<PathBuf>,
+    #[structopt(help = "Output file - defaults to `stdout` if not provided")]
+    output: Option<PathBuf>,
+}
+
+#[derive(StructOpt)]
+struct CoreOpt {
     #[structopt(
         short,
         long,
@@ -51,14 +64,26 @@ struct Opt {
     unique: bool,
     #[structopt(long, help = "Consider non-adjacent lines for uniqueness")]
     non_adjacent: bool,
-    #[structopt(
-        help = "Input file - defaults to `stdin` if not provided, or if filename is \"-\""
-    )]
-    input: Option<PathBuf>,
-    #[structopt(help = "Output file - defaults to `stdout` if not provided")]
-    output: Option<PathBuf>,
 }
 
-fn main() {
-    let _args = Opt::from_args();
+fn exec<R: Read, W: Write>(read: &mut R, write: &mut W, core_opt: CoreOpt) -> anyhow::Result<()> {
+    // use these for buffered reads and writes - much more efficient
+    let read = BufReader::new(read);
+    let write = LineWriter::new(write);
+
+    Ok(())
+}
+
+fn main() -> anyhow::Result<()> {
+    let Opt {input, output, core_opt} = Opt::from_args();
+    let mut input = match input {
+        None => box io::stdin() as Box<dyn Read>,
+        Some(input) => box File::open(input)? as Box<dyn Read>,
+    };
+    let mut output = match output {
+        None => box io::stdout() as Box<dyn Write>,
+        // important not to truncate what is already in the file.   
+        Some(output) => box OpenOptions::new().write(true).open(output)? as Box<dyn Write>,
+    };
+    exec(&mut input, &mut output, core_opt)
 }
