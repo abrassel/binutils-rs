@@ -7,9 +7,6 @@ header:
 
       This source code is licensed under the MIT license found in the
       LICENSE file in the root directory of this source tree.
-      
-  paths: # `paths` are the path list that will be checked (and fixed) by license-eye, default is ['**'].
-    - '/src'
 
   paths-ignore: # `paths-ignore` are the path list that will be ignored by license-eye.
     - '.dependabot'
