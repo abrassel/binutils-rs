@@ -1,5 +1,11 @@
-[workspace]
+[package]
+name = "binutils"
+version = "0.1.0"
+edition = "2021"
 
-members = [
-    "sort"
-]
+[[bin]]
+name = "sort"
+path = "src/bin/sort.rs"
+
+[dependencies]
+anyhow = "1.0"
