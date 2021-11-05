@@ -8,7 +8,7 @@
 
 #![feature(box_syntax)]
 
-use std::{fs::{File, OpenOptions}, io::{self, BufReader, LineWriter, Read, Write}, path::PathBuf};
+use std::{fs::{File, OpenOptions}, io::{self, BufReader, LineWriter, Read, Write}, path::{Path, PathBuf}};
 
 use structopt::StructOpt;
 
@@ -77,8 +77,8 @@ fn exec<R: Read, W: Write>(read: &mut R, write: &mut W, core_opt: CoreOpt) -> an
 fn main() -> anyhow::Result<()> {
     let Opt {input, output, core_opt} = Opt::from_args();
     let mut input = match input {
-        None => box io::stdin() as Box<dyn Read>,
-        Some(input) => box File::open(input)? as Box<dyn Read>,
+        Some(input) if input != Path::new("-") => box File::open(input)? as Box<dyn Read>,
+        _ => box io::stdin() as Box<dyn Read>,
     };
     let mut output = match output {
         None => box io::stdout() as Box<dyn Write>,
