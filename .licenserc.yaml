@@ -8,17 +8,35 @@ header:
       This source code is licensed under the MIT license found in the
       LICENSE file in the root directory of this source tree.
       
-  paths:
-    - '*.rs'
-      
-  paths-ignore:
+  paths: # `paths` are the path list that will be checked (and fixed) by license-eye, default is ['**'].
+    - '/src'
+
+  paths-ignore: # `paths-ignore` are the path list that will be ignored by license-eye.
+    - '.dependabot'
+    - '.github'
     - 'dist'
-    - 'licenses'
-    - '**/*.md'
+    - 'rss'
+    - 'templates'
+
     - 'LICENSE'
-    - 'rust-toolchain'
     - 'NOTICE'
-    - '.*'
-    - '.**'
+    - '.editorconfig'
+    - '.eslintignore'
+    - '.gitattributes'
+    - '.gitignore'
+    - '.node-inspectorrc'
+    - '.prettierignore'
+    - '.vimrc'
+    - '.whitesource'
+    - 'rust_toolchain'
+
+    - '**/*.md'
+    - '**/*.lock'
+    - '**/*.yaml'
+    - '**/*.yml'
+    - '**/*.json'
+    - '**/*.toml'
+    - '**/*.svg'
+    - '**/*.js'
 
   comment: on-failure
