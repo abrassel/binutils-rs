@@ -3,9 +3,6 @@ on:
   push:
     branches:
     - main
-    
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   add_header:
@@ -13,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.MY_TOKEN }}
     - name: Fix License Header
       uses: apache/skywalking-eyes@main
       with:
@@ -26,3 +21,5 @@ jobs:
         author_name: License Bot
         author_email: license_bot@github.com
         message: 'Automatic application of license header'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
