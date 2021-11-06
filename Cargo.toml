@@ -12,3 +12,4 @@ path = "src/bin/uniq.rs"
 [dependencies]
 anyhow = "1.0"
 structopt = "0.3"
+thiserror = "1.0"
