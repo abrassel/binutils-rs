@@ -7,32 +7,36 @@ use structopt::StructOpt;
 
 #[derive(StructOpt)]
 struct CoreOpt {
-    #[structopt(long, help = "Tail from beginning of file instead")]
+    /// Tail from beginning of file instead
+    #[structopt(long)]
     start: bool,
-    #[structopt(short = "c", help = "Output the last (first with `--start`) bytes")]
+    /// Output the last (first with `--start`) bytes
+    #[structopt(short = "c")]
     bytes: Option<usize>, // TODO: use custom number parser here
-    #[structopt(short, long, help = "Loop forever trying to read more.")]
+    /// Loop forever trying to read more.
+    #[structopt(short, long)]
     follow: bool,
+    /// "Wait until the file exists, periodically retrying.  Optional sleep duration,
+    /// defaults to 1 sec.
     #[structopt(
         short,
         long,
-        help = "Wait until the file exists, periodically retrying.  Optional sleep duration, \
-                defaults to 1 sec."
     )]
     retry: Option<Option<f64>>,
+    /// Output the last (first with `--start`), lines
     #[structopt(
         short,
         long,
-        help = "Output the last (first with `--start`), lines",
         conflicts_with = "bytes"
     )]
     lines: Option<usize>, // TODO: use custom number parser here
-    #[structopt(short, long, help = "Don't print out file headers")]
+    /// Don't print out file headers
+    #[structopt(short, long)]
     quiet: bool,
+    /// Instead of printing lines, print without any terminators.
     #[structopt(
         short,
         long,
-        help = "Instead of printing lines, print without any terminators"
     )]
     zero_terminated: bool,
 }
