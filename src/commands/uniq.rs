@@ -1,4 +1,4 @@
-use std::io::{Read, Write};
+use std::io::{self, Read, Write};
 
 use structopt::StructOpt;
 use thiserror::Error;
@@ -39,4 +39,7 @@ pub fn uniq(
 }
 
 #[derive(Error, Debug)]
-pub enum UniqError {}
+pub enum UniqError {
+    #[error(transparent)]
+    IOError(#[from] io::Error),
+}
