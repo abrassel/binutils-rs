@@ -33,8 +33,8 @@ fn main() -> Result<(), UniqError> {
         output,
         core_opt,
     } = Opt::from_args();
-    let mut input = convert_input(input.as_ref());
-    let mut output = convert_output(output.as_ref());
+    let mut input = convert_input(input.as_ref())?;
+    let mut output = convert_output(output.as_ref())?;
 
     uniq::uniq(&mut input, &mut output, &core_opt)
 }
