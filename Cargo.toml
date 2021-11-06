@@ -9,3 +9,5 @@ path = "src/bin/cut.rs"
 
 [dependencies]
 anyhow = "1.0"
+structopt = "0.3"
+regex = "1.5"
