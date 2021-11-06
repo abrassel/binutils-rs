@@ -1,8 +1,4 @@
-use std::{
-    fs::{File, OpenOptions},
-    io::{self, BufRead, BufReader, LineWriter, Write},
-    path::{Path, PathBuf},
-};
+use std::io::{Read, Write};
 
 use structopt::StructOpt;
 use thiserror::Error;
@@ -35,7 +31,7 @@ pub struct UniqOpt {
 }
 
 pub fn uniq(
-    input: &mut impl BufRead,
+    input: &mut impl Read,
     output: &mut impl Write,
     opts: &UniqOpt,
 ) -> Result<(), UniqError> {

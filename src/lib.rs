@@ -7,4 +7,4 @@
 #![feature(box_syntax)]
 
 pub mod commands;
-pub(crate) mod util;
+pub mod util;

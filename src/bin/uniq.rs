@@ -6,13 +6,12 @@
 //! `STDOUT` by default, although input and output files may be specified.
 //! See the command line documentation for more details.
 
-use std::{
-    fs::{File, OpenOptions},
-    io::{self, BufReader, LineWriter, Read, Write},
-    path::{Path, PathBuf},
-};
+use std::path::PathBuf;
 
-use binutils::commands::uniq::{self, UniqError, UniqOpt};
+use binutils::{
+    commands::uniq::{self, UniqError, UniqOpt},
+    util::{convert_input, convert_output},
+};
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
