@@ -17,52 +17,52 @@ use structopt::StructOpt;
 struct Opt {
     #[structopt(flatten)]
     core_opt: CoreOpt,
-    #[structopt(
-        help = "Input file - defaults to `stdin` if not provided, or if filename is \"-\""
-    )]
+    /// "Input file - defaults to `stdin` if not provided, or if filename is \"-\""
     input: Option<PathBuf>,
-    #[structopt(help = "Output file - defaults to `stdout` if not provided")]
+    /// Output file - defaults to `stdout` if not provided
     output: Option<PathBuf>,
 }
 
 #[derive(StructOpt)]
 struct CoreOpt {
+    /// Precede each line with the number of times it occured in the input, followed by a
+    /// space
     #[structopt(
         short,
         long,
-        help = "Precede each line with the number of times it occured in the input, followed by a \
-                space"
     )]
     count: bool,
+    /// Only output repeated lines
     #[structopt(
         short,
         long,
         conflicts_with = "unique",
-        help = "Only output repeated lines"
     )]
     repeated: bool,
+    /// Ignore the first <words> words. This is one based.
     #[structopt(
         short,
         long = "skip-words",
-        help = "Ignore the first <words> words. This is one based."
     )]
     words: Option<usize>,
+    /// Ignore the first <graphemes> graphemes. This is one based.
+    /// If used in conjunction with \"-d\", applies second.
     #[structopt(
         short,
         long = "skip-graphemes",
-        help = "Ignore the first <graphemes> graphemes. This is one based.
-                If used in conjunction with \"-d\", applies second."
     )]
     graphemes: Option<usize>,
-    #[structopt(short, long, help = "Perform case insensitive line comparisons.")]
+    /// Perform case insensitive line comparisons.
+    #[structopt(short, long)]
     insensitive: bool,
+    /// Only output lines that are not repeated in the input.
     #[structopt(
         short,
         long,
-        help = "Only output lines that are not repeated in the input."
     )]
     unique: bool,
-    #[structopt(long, help = "Consider non-adjacent lines for uniqueness")]
+    /// Consider non-adjacent lines for uniqueness
+    #[structopt(long)]
     non_adjacent: bool,
 }
 
