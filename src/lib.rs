@@ -5,6 +5,6 @@
 //
 
 #![feature(box_syntax)]
-
+#![feature(trait_alias)]
 pub mod commands;
 pub(crate) mod util;
