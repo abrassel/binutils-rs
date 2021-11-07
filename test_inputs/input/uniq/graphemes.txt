@@ -1,4 +1,4 @@
---graphemes=1 --words=1
+--skip-graphemes=1 --skip-words=1
 ignore ßtest me
 test 😀test me
 wut 🍆test me

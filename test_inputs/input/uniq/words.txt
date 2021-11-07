@@ -1,4 +1,4 @@
---words=3
+--skip-words=2
 hello world blah
 goodby blah yes
 woah wow yes
