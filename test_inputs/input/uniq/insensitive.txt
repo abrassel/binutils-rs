@@ -1,0 +1,10 @@
+--insensitive
+hello 99
+YlsPIRIt 78
+ylspirit 78
+teST 73
+test 73
+hello 99
+test 73
+test 73
+test 73

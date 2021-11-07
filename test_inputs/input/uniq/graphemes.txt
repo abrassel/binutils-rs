@@ -1,0 +1,7 @@
+--graphemes=1 --words=1
+ignore ßtest me
+test 😀test me
+wut 🍆test me
+gbye 👅👅new value
+random 🍆👅new t
+west 😀👅new t

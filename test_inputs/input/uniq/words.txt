@@ -1,0 +1,8 @@
+--words=3
+hello world blah
+goodby blah yes
+woah wow yes
+hello world yes
+goodbye to blah
+test me
+test me

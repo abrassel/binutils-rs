@@ -1,0 +1,11 @@
+--non-adjacent
+hello 99
+hello 99
+ylspirit 78
+ylspirit 78
+test 73
+test 73
+hello 99
+test 73
+test 73
+test 73
