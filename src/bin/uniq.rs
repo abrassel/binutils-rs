@@ -10,7 +10,7 @@ use std::path::PathBuf;
 
 use binutils::{
     commands::uniq::{self, UniqError, UniqOpt},
-    util::{convert_input, convert_output},
+    util::conversions::{convert_input, convert_output},
 };
 use structopt::StructOpt;
 
@@ -35,5 +35,5 @@ fn main() -> Result<(), UniqError> {
     let mut input = convert_input(input.as_ref())?;
     let mut output = convert_output(output.as_ref())?;
 
-    uniq::uniq(&mut input, &mut output, &core_opt)
+    uniq::uniq(&mut input, &mut output, core_opt)
 }
