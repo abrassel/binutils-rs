@@ -4,7 +4,6 @@
 // LICENSE file in the root directory of this source tree.
 //
 use std::io::{self, Read, Write};
-use std::fs::File;
 use itertools::Itertools;
 use structopt::StructOpt;
 use thiserror::Error;
@@ -42,21 +41,24 @@ pub fn uniq(
     opts: UniqOpt,
 ) -> Result<(), UniqError> {
     
+    //this closure applys any skips to a given line
+    let removals = |mut line: String| {
+        if opts.graphemes > 0{
+            line = line[opts.graphemes..].to_owned();
+        }
+        if opts.words > 0{
+            let words = line.split(' ').skip(opts.words).collect_vec();
+            line = words.join(" ");
+        }
+        line
+    };
+
     let mut buf = String::new();
     input.read_to_string(&mut buf)?;
 
     if buf.is_empty(){
         return Ok(());
     }
-
-    //do any skipping necessary first
-    buf = buf[opts.graphemes..].to_owned();
-
-    if opts.words > 0{
-        let words = buf.split(' ').skip(opts.words).collect_vec();
-        buf = words.join(" ");
-    }
-
 
     if opts.insensitive{
         //if we want to perform case-insensitive comparisons, turn all chars to lowercase
@@ -71,11 +73,11 @@ pub fn uniq(
         lines.sort();
     }
 
-    let mut cur_line = lines[0]; 
-    //we're guaranteed that theres at least one line by the check on line 48
+    let mut cur_line = removals(lines[0].to_owned()); 
+    //we're guaranteed that theres at least one line by the check earlier on
     lines.remove(0); 
     //lines condensed keeps track of each unique line and the number of times it occured
-    let mut lines_condensed: Vec<(&str,usize)> = vec![(cur_line, 1)];
+    let mut lines_condensed: Vec<(String,usize)> = vec![(cur_line.to_owned(), 1)];
 
     for next_line in lines{
         if cur_line == next_line{
@@ -83,9 +85,9 @@ pub fn uniq(
             let (_, n ) = lines_condensed[i];
             lines_condensed[i] = (cur_line, n+1);
         } else {
-            lines_condensed.push((next_line, 1));
+            lines_condensed.push((next_line.to_owned(), 1));
         }
-        cur_line = next_line;
+        cur_line = removals(next_line.to_owned()).to_owned();
     }
     
     // writing to the output
