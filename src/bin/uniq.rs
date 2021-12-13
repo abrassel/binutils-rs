@@ -7,7 +7,8 @@
 //! See the command line documentation for more details.
 
 use std::path::PathBuf;
-
+use std::io::{self, Read, Write};
+use thiserror::Error;
 use binutils::{
     commands::uniq::{self, UniqError, UniqOpt},
     util::conversions::{convert_input, convert_output},
