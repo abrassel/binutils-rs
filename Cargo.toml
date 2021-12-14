@@ -10,3 +10,5 @@ path = "src/bin/tail.rs"
 [dependencies]
 anyhow = "1.0"
 structopt = "0.3"
+thiserror = "1.0.30"
+itertools = "0.10.3"
